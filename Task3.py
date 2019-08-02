@@ -43,3 +43,14 @@ Print the answer as a part of a message::
 to other fixed lines in Bangalore."
 The percentage should have 2 decimal digits
 """
+
+def task4(calls):
+
+    for call in calls:
+        if call[0]
+
+
+
+
+
+task4(calls)
