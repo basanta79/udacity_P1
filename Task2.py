@@ -20,3 +20,15 @@ Print a message:
 September 2016.".
 """
 
+def task2(calls):
+    longest_call = {'time': '', 'number': ''}
+
+    for call in calls:
+        if longest_call['time'] < call[3]:
+            longest_call['time'] = call[3]
+            longest_call['number'] = call[0]
+
+    print'{0} spent the longest time, {1} seconds, on the phone during September 2016'.format(longest_call.get('number'), longest_call.get('time'))
+
+task2(calls)
+
