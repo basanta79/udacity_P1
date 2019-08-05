@@ -44,13 +44,47 @@ to other fixed lines in Bangalore."
 The percentage should have 2 decimal digits
 """
 
+
 def task4(calls):
+    area_mobile_codes = {}
+    area_marketing_codes = {}
+    area_fixed_codes = {}
+    total_calls = 0
+    total_calls_to_bangalore = 0
 
     for call in calls:
-        if call[0]
+        total_calls +=1
+        if '(080)' in call[0]:
+            if call[1].find('(', 0, 1) >= 0:
+                start=call[1].find('(') + 1
+                end=call[1].find(')')
+                code = call[1][start:end]
+                occurrences = area_mobile_codes.get(code) or 0
+                area_mobile_codes[code] = occurrences + 1
+            elif call[1].find('140', 0, 3) >= 0:
+                occurrences = area_marketing_codes.get('140') or 0
+                area_marketing_codes['140'] = occurrences + 1
+            else:
+                area_code = call[1].split()
+                occurrences = area_fixed_codes.get(area_code[0]) or 0
+                area_fixed_codes[area_code[0]] = occurrences + 1
 
+    total_calls_to_bangalore = area_mobile_codes['080']
+    percentage = round((float(total_calls_to_bangalore)/float(total_calls))*100, 2)
+    mobile_codes = printTuple(tuple(area_mobile_codes), True)
+    marketing_codes = printTuple(tuple(area_marketing_codes), False)
+    fixed_codes = printTuple(tuple(area_fixed_codes), False)
+    print("The numbers called by people in Bangalore have codes:" + mobile_codes + marketing_codes + fixed_codes )
+    print('{0} percent of calls from fixed lines in Bangalore are calls to other fixed lines in Bangalore.').format(percentage)
 
-
+def printTuple(tuple_to_print, with_brackets):
+    string_result = ''
+    for element in tuple_to_print:
+        if with_brackets:
+            string_result = string_result + '\n' + '(' + str(element) + ')'
+        else:
+            string_result = string_result + '\n' + str(element)
+    return string_result
 
 
 task4(calls)
